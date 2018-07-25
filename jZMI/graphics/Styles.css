@@ -1,0 +1,74 @@
+.button {
+    -fx-text-fill: #86D3F1;
+    -fx-font-size: 18px;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#30bdff, #04351F);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-alignment: center;
+    -fx-pref-width: 20 px;
+    -fx-pref-height: 20 px;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#04351F, #30bdff);
+}
+
+.button:pressed {
+    -fx-background-color: #04351F;
+}
+
+.background {
+	-fx-pref-width: 620;
+	-fx-pref-height: 400;
+}
+
+.pic {
+	-fx-background-image: url("https://raw.githubusercontent.com/Jerminater/jTears-Beta-/master/jTears/graphics/images/OSRS.jpg");
+	-fx-background-size: stretch;
+}
+
+.itemlbl {
+    -fx-font-family: "Bell MT";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold-italic;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-alignment: left;
+    -fx-pref-width: 117;
+    -fx-padding: 3;
+}
+
+.infolbl {
+    -fx-font-family: "Bell MT";
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold-italic;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-alignment: left;
+    -fx-pref-width: 90;
+    -fx-padding: 3;
+}
+
+.infotxt {
+    -fx-font-family: "Bell MT";
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-alignment: left;
+    -fx-pref-width: 90;
+    -fx-padding: 3;
+    -fx-text-origin: bottom;
+}
+
+.anylbl {
+    -fx-font-family: "Bell MT";
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold-italic;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-alignment: left;
+    -fx-pref-width: 325;
+    -fx-padding: 0 0 0 6;
+}
+
