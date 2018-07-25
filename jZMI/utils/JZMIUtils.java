@@ -33,6 +33,7 @@ import scripts.jZMI.data.Vars;
 import scripts.jZMI.data.Cons;
 
 public class JZMIUtils {
+	
 	// Vars for methods
 	private static ArrayList<RSItem> fullPouches = new ArrayList<RSItem>();
 	private static ArrayList<RSItem> emptyPouches = new ArrayList<RSItem>();
@@ -205,14 +206,14 @@ public class JZMIUtils {
 	 * @return true if all pouches are full.
 	*/
 	public static boolean hasFullPouches() {
-		RSItem[] pouches = Inventory.find(Cons.Items.ESSENCE_POUCHES_ALL.getIDs());
+		RSItem[] pouches = Inventory.find(Cons.ESSENCE_POUCHES_ALL);
 		if (pouches.length == 0)
 			return true;
 		for (RSItem i:pouches) {
 			switch (i.getDefinition().getName()) {
 				case ("Small pouch"):
 					
-					RSVarBit sBit = RSVarBit.get(Cons.smallBitCount);
+					RSVarBit sBit = RSVarBit.get(Cons.SMALLBITCOUNT);
 					if (sBit != null)
 						if (sBit.getValue() < 3)
 							return false;
@@ -220,7 +221,7 @@ public class JZMIUtils {
 					
 				case ("Medium pouch"):
 					
-					RSVarBit mBit = RSVarBit.get(Cons.medBitCount);
+					RSVarBit mBit = RSVarBit.get(Cons.MEDBITCOUNT);
 					if (mBit != null)
 						if (mBit.getValue() < 6)
 							return false;
@@ -228,7 +229,7 @@ public class JZMIUtils {
 					
 				case ("Large pouch"):
 					
-					RSVarBit lBit = RSVarBit.get(Cons.largeBitCount);
+					RSVarBit lBit = RSVarBit.get(Cons.LARGEBITCOUNT);
 					if (lBit != null)
 						if (lBit.getValue() < 9)
 							return false;
@@ -236,7 +237,7 @@ public class JZMIUtils {
 					
 				case ("Giant pouch"):
 					
-					RSVarBit gBit = RSVarBit.get(Cons.giantBitCount);
+					RSVarBit gBit = RSVarBit.get(Cons.GIANTBITCOUNT);
 					if (gBit != null)
 						if (gBit.getValue() < 12)
 							return false;
@@ -321,7 +322,7 @@ public class JZMIUtils {
 	 * @return Desired RSItem array. Empty if none found.
 	*/
 	public static RSItem[] getPouches(int state) {
-		RSItem[] pouches = Inventory.find(Cons.Items.ESSENCE_POUCHES_GOOD.getIDs());
+		RSItem[] pouches = Inventory.find(Cons.ESSENCE_POUCHES_GOOD);
 		fullPouches.clear(); emptyPouches.clear(); notEmptyPouches.clear(); partlyFullPouches.clear();
 		if (pouches.length <1) 
 			return pouches;
@@ -329,16 +330,16 @@ public class JZMIUtils {
 			switch (i.getDefinition().getName()) 
 			{
 			case ("Small pouch"):
-				pouchPlacer(i,RSVarBit.get(Cons.smallBitCount), 3);
+				pouchPlacer(i,RSVarBit.get(Cons.SMALLBITCOUNT), 3);
 				break;
 			case ("Medium pouch"):
-				pouchPlacer(i,RSVarBit.get(Cons.medBitCount), 6);
+				pouchPlacer(i,RSVarBit.get(Cons.MEDBITCOUNT), 6);
 				break;
 			case ("Large pouch"):
-				pouchPlacer(i,RSVarBit.get(Cons.largeBitCount), 9);
+				pouchPlacer(i,RSVarBit.get(Cons.LARGEBITCOUNT), 9);
 				break;
 			case ("Giant pouch"):
-				pouchPlacer(i,RSVarBit.get(Cons.giantBitCount), 12);
+				pouchPlacer(i,RSVarBit.get(Cons.GIANTBITCOUNT), 12);
 				break;
 			}
 		}
@@ -382,8 +383,8 @@ public class JZMIUtils {
 			TABS.MAGIC.open();
 		
 		// Clicks the Dark Mage option on NPC Contact spell. If no interface exists for this, it will find it and cache it.
-		if (Cons.darkMageInterface != null)
-			Cons.darkMageInterface.click("Dark Mage");
+		if (Cons.DARKMAGEINTERFACE != null)
+			Cons.DARKMAGEINTERFACE.click("Dark Mage");
 		else {
 			RSInterfaceChild[] children = Interfaces.getChildren(218);
 			RSInterfaceChild child = null;
@@ -395,7 +396,7 @@ public class JZMIUtils {
 							child = c;	
 				}
 			if (child != null) {
-				Cons.darkMageInterface = child;
+				Cons.DARKMAGEINTERFACE = child;
 				child.click("Dark Mage");
 			}
 		}
@@ -405,7 +406,7 @@ public class JZMIUtils {
 
 		// Not tested for if abyssal book is in bank.
 		int i = 0;
-		while (i > 100 || InventWrapper.inventContains(Cons.Items.ESSENCE_POUCHES_BAD.getIDs())) {
+		while (i > 100 || InventWrapper.inventContains(Cons.ESSENCE_POUCHES_BAD)) {
 			General.sleep(100);
 			if (NPCChat.getClickContinueInterface() != null)
 				NPCChat.clickContinue(true);

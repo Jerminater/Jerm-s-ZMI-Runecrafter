@@ -57,9 +57,7 @@ public class Vars {
 
 	public int energyPotionID, foodID;
 
-	public long xpGained, levelsGained, xpPerHour, tripsMade;
-
-	public long timeToLevel;
+	public long xpGained, levelsGained, xpPerHour, tripsMade, timeToLevel;
 
 	public ArrayList<PRAYERS> quickPrayers = new ArrayList<PRAYERS>();
 

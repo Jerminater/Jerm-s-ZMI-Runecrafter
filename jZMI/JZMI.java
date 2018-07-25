@@ -102,11 +102,11 @@ public class JZMI extends Script implements MinimapClicking, MouseSplinePainting
 	private void SetSettings() {
 
 		// Shift clicking redundancy
-		if (RSVarBit.get(Cons.shiftBit).getValue() == 0)
+		if (RSVarBit.get(Cons.SHIFTBIT).getValue() == 0)
 			Utilities.shiftDropping(true);
 				
 		// Escape close
-		if (RSVarBit.get(Cons.escapeBit).getValue() == 0)
+		if (RSVarBit.get(Cons.ESCAPEBIT).getValue() == 0)
 			Utilities.escapeClose();
 				
 		Keyboard.pressKeys(27);

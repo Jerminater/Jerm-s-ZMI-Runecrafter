@@ -10,7 +10,7 @@ public class WalkingHandler {
 	public static void tileClicked(RSTile tile) {
 		
 		// Detects when clicked tile near altar
-		if (Cons.Areas.ALTAR.getArea().contains(tile))
+		if (Cons.ALTAR.contains(tile))
 			Vars.get().hoverAlter = true;
 		
 		// Might add some more here for player unique walking patterns.

@@ -79,7 +79,7 @@ public class GoToBank implements Task {
 			case TELE:
 				
 				// Clicks path to ladder and fills pouch with runes crafted. Failure to click will use WebWalking to get to Ladder.
-				if (Walking.clickTileMM(Cons.Areas.PATH_TO_LADDER_CLICK.getArea().getRandomTile(), 1)) {
+				if (Walking.clickTileMM(Cons.PATH_TO_LADDER_CLICK.getRandomTile(), 1)) {
 					
 					// Will hover the map if Antiban says we should
 					Antiban.get().setHoverAndMenuOpenBooleans();
@@ -148,16 +148,16 @@ public class GoToBank implements Task {
 		RSObject[] ladder = Objects.find(10, Filters.Objects.nameContains("Ladder"));
 		if (ladder.length > 0)
 			Utilities.accurateClickObject(ladder[0], false, "Climb");
-		Timing.waitCondition(JConditions.areaContains(Cons.Areas.BANK.getArea()), 4000L);
+		Timing.waitCondition(JConditions.areaContains(Cons.BANK), 4000L);
 	}
 
 	// Returns the current location of the player
 	private State getLocation() {
-		if (Cons.Areas.BANK.getArea().contains(Player.getPosition()))
+		if (Cons.BANK.contains(Player.getPosition()))
 			return State.BANK;
-		else if (Cons.Areas.TELE.getArea().contains(Player.getPosition()))
+		else if (Cons.TELE.contains(Player.getPosition()))
 			return State.TELE;
-		else if (Cons.Areas.LADDER.getArea().contains(Player.getPosition()))
+		else if (Cons.LADDER.contains(Player.getPosition()))
 			return State.LADDER;
 		else
 			return State.INTERMEDIATE;
@@ -165,14 +165,14 @@ public class GoToBank implements Task {
 	
 	// Randomizes path a bit back to bank.
 	private RSTile getLadderWalkingTile() {
-		RSTile ladderTile = Cons.Tiles.LADDER_WALKING_TILE.getTile();
+		RSTile ladderTile = Cons.LADDER_WALKING_TILE;
 		ladderTile.translate(General.random(1, 2), General.random(-1, 1));
 		return ladderTile;
 	}
 	
 	// Randomizes path a bit back to bank.
 	private RSTile getAltarWalkingTile() {
-		RSTile altarTile = Cons.Tiles.PRAYER_ALTAR_WALKING_TILE.getTile();
+		RSTile altarTile = Cons.PRAYER_ALTAR_WALKING_TILE;
 		altarTile.translate(General.random(-1,1), General.random(0,1));
 		return altarTile;
 	}
@@ -201,7 +201,7 @@ public class GoToBank implements Task {
 		while ((!Inventory.isFull() || !JZMIUtils.hasFullPouches()) || i == 20)
 		{ 
 			General.sleep(General.randomSD(250, 450, 50));
-			if (InventWrapper.inventContains(Cons.Items.PURE_ESSENCE.getIDs()) && !JZMIUtils.hasFullPouches() && Inventory.isFull() || quickDraw == true) 
+			if (InventWrapper.inventContains(Cons.PURE_ESSENCE) && !JZMIUtils.hasFullPouches() && Inventory.isFull() || quickDraw == true) 
 			{
 				// Making sure we are not in the bank interface, and the inventory tab is open
 				if (Banking.isBankScreenOpen())
@@ -235,7 +235,7 @@ public class GoToBank implements Task {
 				}
 				
 				// Pouch repairing
-				if (InventWrapper.inventContains(Cons.Items.ESSENCE_POUCHES_BAD.getIDs()))
+				if (InventWrapper.inventContains(Cons.ESSENCE_POUCHES_BAD))
 					JZMIUtils.repairPouches();
 				
 				 // reset after a quick bank
@@ -246,7 +246,7 @@ public class GoToBank implements Task {
 				if (!Banking.isBankScreenOpen())
 					JBanking.open(true);
 				
-				if (Inventory.find(Filters.Items.nameNotContains(Cons.goodItems)).length > Vars.get().runesInInvent.length) 
+				if (Inventory.find(Filters.Items.nameNotContains(Cons.GOODITEMS)).length > Vars.get().runesInInvent.length) 
 					JBanking.depositAll(false);
 				
 				// Withdraw energy potion if needed based on user entered run limit (change to antiban method maybe).
@@ -260,7 +260,7 @@ public class GoToBank implements Task {
 					JBanking.withdraw(1, false, Filters.Items.idEquals(Vars.get().foodID));
 
 				// Withdrawing essence and setting quickDraw to true so that we can fill pouches quickly.
-				if (JBanking.withdraw(0, false, Filters.Items.idEquals(Cons.Items.PURE_ESSENCE.getIDs()[0])));
+				if (JBanking.withdraw(0, false, Filters.Items.idEquals(Cons.PURE_ESSENCE)));
 					quickDraw = true;
 			}
 		i++;

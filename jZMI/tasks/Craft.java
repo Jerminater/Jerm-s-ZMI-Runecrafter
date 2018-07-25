@@ -43,8 +43,8 @@ public class Craft implements Task {
 	@Override
 	public boolean validate() {
 		return (((JZMIUtils.hasFullPouches() && Inventory.isFull()) || 
-				Cons.Areas.ALTAR.getArea().contains(Player.getPosition())) &&
-				Cons.Areas.DUNGEON.getArea().contains(Player.getPosition())) || Vars.get().doneBanking;
+				Cons.ALTAR.contains(Player.getPosition())) &&
+				Cons.DUNGEON.contains(Player.getPosition())) || Vars.get().doneBanking;
 	}
 	
 	private State location;
@@ -124,7 +124,7 @@ public class Craft implements Task {
 		}
 		
 		// Loops through the process of crafting essense. Very dynamic in figuring out the best way to withdraw ess and craft.
-		while (JZMIUtils.getPouches(0).length > 0 || InventWrapper.inventContains(Cons.Items.PURE_ESSENCE.getIDs()) || Cons.Areas.ALTAR.getArea().contains(Player.getPosition())) {
+		while (JZMIUtils.getPouches(0).length > 0 || InventWrapper.inventContains(Cons.PURE_ESSENCE) || Cons.ALTAR.contains(Player.getPosition())) {
 			General.sleep(20);
 			
 			/* 
@@ -138,7 +138,7 @@ public class Craft implements Task {
 			 * else if: inventory does not contain essense and we have all empty pouches
 			 * 		-> teleport to Ourania
 			 */
-			if (InventWrapper.inventContains(Cons.Items.PURE_ESSENCE.getIDs()) || quickCraft) {
+			if (InventWrapper.inventContains(Cons.PURE_ESSENCE) || quickCraft) {
 				Timing07.waitCondition(() -> {return Clicking.click("Craft-rune", altar.getAllTiles()[General.random(0, 3)]);}, 2000L);
 				JZMIUtils.hoverNextActionAndWait();
 				Mouse.setSpeed(100);
@@ -146,7 +146,7 @@ public class Craft implements Task {
 			} else if (!Inventory.isFull() && JZMIUtils.getPouches(0).length > 0) {
 				getEss();
 				quickCraft = true;
-			} else if (!InventWrapper.inventContains(Cons.Items.PURE_ESSENCE.getIDs()) && JZMIUtils.getPouches(0).length == 0)
+			} else if (!InventWrapper.inventContains(Cons.PURE_ESSENCE) && JZMIUtils.getPouches(0).length == 0)
 				teleportOurania();
 		}
 	}
@@ -163,7 +163,7 @@ public class Craft implements Task {
 		
 		// Waiting till we teleport
 		Timing07.waitCondition(() -> {
-			return (Cons.Areas.TELE.getArea().contains(Player.getPosition()));
+			return (Cons.TELE.contains(Player.getPosition()));
 			}, 5000L);
 		
 		// in case it got stuck in thread pressing button
@@ -241,9 +241,9 @@ public class Craft implements Task {
 	
 	// Gets the current location of the player within the dungeon
 	private State getLocation() {
-		if (Cons.Areas.BANK.getArea().contains(Player.getPosition()))
+		if (Cons.BANK.contains(Player.getPosition()))
 			return State.BANK;
-		else if (Cons.Areas.ALTAR.getArea().contains(Player.getPosition()))
+		else if (Cons.ALTAR.contains(Player.getPosition()))
 			return State.ALTAR;
 		else
 			return State.INTERMEDIATE;
