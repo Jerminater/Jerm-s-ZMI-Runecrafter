@@ -99,7 +99,7 @@ public class JZMI extends Script implements MinimapClicking, MouseSplinePainting
 	}
 	
 	// Gets settings corrected. Might add support for making sure inventory and magic tab are on correct keys, or just make it dynamic with varbits.
-	private void SetSettings() {
+	private void setSettings() {
 
 		// Shift clicking redundancy
 		if (RSVarBit.get(Cons.SHIFTBIT).getValue() == 0)
