@@ -8,3 +8,11 @@ Source code for my zmi crafter.
 - My personal API was left out so that the code is harder to copy while still in development.
 
 - Code is here for the purpose of feedback.
+
+- To do:
+  - Create a GUI.
+  - Create a better paint interface.
+  - Optimize walking paths.
+  - Add several antiban methods.
+  - Add option to follow players.
+  - More that I have written down, but thats most of it.
